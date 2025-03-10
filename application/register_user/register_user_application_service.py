@@ -7,6 +7,7 @@ from shared.transaction_manager import TransactionManager
 
 class UserRegistrationData(BaseModel):
     email: str
+    password: str
 
 
 def execute(params: UserRegistrationData, db: Session):
