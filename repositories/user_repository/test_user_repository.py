@@ -7,8 +7,10 @@ def test_get_user_by_email(db_session: Session):
     """Test retrieving a user by id."""
     # First, create a user in the database
     email = 'test2@email.com'
-    user = User(email)
-    db_session.commit(user)
+    password = '123'
+    user = User(email, password)
+    db_session.add(user)
+    db_session.commit()
 
     assert user.email == email
     # Now, retrieve the user by email
@@ -20,9 +22,12 @@ def test_get_user_by_email(db_session: Session):
 def test_get_user_by_id(db_session: Session):
     """Test retrieving a user by id."""
     # First, create a user in the database
-    email = 'test2@email.com'
-    user = User(email)
-    db_session.commit(user)
+    email = 'test3@email.com'
+    password = '123'
+    user = User(email,password)
+    db_session.add(user)
+    db_session.commit()
+
     assert user.email == email
     # Now, retrieve the user by email
     saved_user = UserRepository.get_by_id(db_session, user.id)

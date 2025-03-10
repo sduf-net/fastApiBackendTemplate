@@ -26,7 +26,7 @@ class TransactionManager:
             # Rollback if an error occurred
             self.session.rollback()
             # Re-raise the exception with additional context
-            raise HTTPException(status_code=500, detail=f"Transaction failed: {str(e)}") from e
+            raise e
         finally:
             # Close the session after the transaction is done
             self.session.close()

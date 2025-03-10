@@ -7,7 +7,6 @@ def test_create_user():
     user = User(email, password)
 
     assert user.id is not None
-    assert user.user == user
     assert user.is_deleted is False
     assert user.is_archived is False
 

@@ -20,7 +20,8 @@ async def sign_up(params: UserSignUp, db: Session = Depends(get_db)):
     try:
         register_user(params, db)
         return Response(status_code=201)
-    except ValueError as e:
+    except Exception as e:
+        print(e)
         raise HTTPException(status_code=400, detail=str(e)) from e
 
 

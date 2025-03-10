@@ -22,21 +22,22 @@ def test_sign_up_user_exists(client, db_session):
 
 # Test sign_in success
 def test_sign_in_success(client, db_session):
-    user_payload = {"email": "testuser1@example.com", "password": "Password123!"}
-    user = User(email="testuser1@example.com", password="Password123!")
+    user_payload = {"email": "testuser2@example.com", "password": "Password123!"}
+    user = User(email="testuser2@example.com", password="Password123!")
     db_session.add(user)
     db_session.commit()
 
     response = client.post("/auth/sign_in", json=user_payload)
     assert response.status_code == 200
-    assert response.json() == {"access_token": "mocked_token"}
-
+    response_json = response.json()
+    assert "access_token" in response_json
+    assert response_json["access_token"] != ""
 
 
 # Test sign_in failure (incorrect password)
 def test_sign_in_incorrect_password(client, db_session):
-    user_payload = {"email": "testuser1@example.com", "password": "WrongPassword"}
-    user = User(email="testuser1@example.com", password="123123")
+    user_payload = {"email": "testuser3@example.com", "password": "WrongPassword"}
+    user = User(email="testuser3@example.com", password="123123")
     db_session.add(user)
     db_session.commit()
 

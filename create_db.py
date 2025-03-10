@@ -1,3 +1,4 @@
+import os
 from sqlalchemy import create_engine, text
 from config import get_settings
 
@@ -9,6 +10,9 @@ def create_database():
     try:
         # Connect to PostgreSQL server and create the database
         with engine.connect() as connection:
+            
+            if os.getenv("ENV") == "test":
+                connection.execute(text(f"DROP DATABASE {get_settings().DATABASE_NAME}"))
             connection.execute(text(f"CREATE DATABASE {get_settings().DATABASE_NAME}"))
             print(f"Database '{get_settings().DATABASE_NAME}' created successfully.")
     except Exception as e:
