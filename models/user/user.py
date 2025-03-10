@@ -19,7 +19,7 @@ class User(Base):
     def __init__(self, email: String, password: String):
         self.id = str(uuid.uuid4())
         self.email = email
-        self.hashed_password = password
+        self.hashed_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
         self.is_deleted = False
         self.is_archived = False
 
