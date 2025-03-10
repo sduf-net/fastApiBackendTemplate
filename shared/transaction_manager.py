@@ -1,5 +1,4 @@
 from contextlib import contextmanager
-from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
 class TransactionManager:
@@ -27,6 +26,3 @@ class TransactionManager:
             self.session.rollback()
             # Re-raise the exception with additional context
             raise e
-        finally:
-            # Close the session after the transaction is done
-            self.session.close()
