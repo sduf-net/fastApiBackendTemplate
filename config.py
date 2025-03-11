@@ -5,7 +5,9 @@ class Settings:
     """Production settings class"""
     DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:postgres@db/")
     DATABASE_NAME = os.getenv("DATABASE_NAME", "example_prod")
-    SECRET_KEY = os.getenv("SECRET_KEY", "secret_key")
+    SDUF_BASE_URL = os.getenv("SDUF_BASE_URL", "https://sduf.net")
+    SDUF_PROJECT_API_TOKEN = os.getenv("SDUF_PROJECT_API_TOKEN", "XRHO7CqVHALu/zpp9j5NhJLdZQkqs/MMVKE0AdAy+j8=")
+    SECRET_KEY = os.getenv("SECRET_KEY", "prod-secret-key")
 
 class DevSettings(Settings):
     """Development settings class"""
